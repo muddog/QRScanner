@@ -30,29 +30,27 @@ DEBUG {
 
 
 DESKTOP {
-    INCLUDEPATH += /usr/include/glib-2.0 \
-                   /usr/lib/x86_64-linux-gnu/glib-2.0/include \
-                   /usr/lib/x86_64-linux-gnu/gstreamer-1.0/include
-
-    LIBS +=  -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 -lgstvideo-1.0 -lgstapp-1.0
     DEFINES += LINUX_HOST
+    INCLUDEPATH += /usr/lib/x86_64-linux-gnu/glib-2.0/include/
+    INCLUDEPATH += /usr/lib/x86_64-linux-gnu/gstreamer-1.0/include/
 }
 
 IMX6UL {
-    INCLUDEPATH += /opt/fsl-imx-wayland/4.1.15-2.0.1/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/c++/5.3.0/
-    INCLUDEPATH += /opt/fsl-imx-wayland/4.1.15-2.0.1/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/c++/5.3.0/arm-poky-linux-gnueabi/
-    INCLUDEPATH += /opt/fsl-imx-wayland/4.1.15-2.0.1/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/
-    INCLUDEPATH += /opt/fsl-imx-wayland/4.1.15-2.0.1/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/gstreamer-1.0/
-    INCLUDEPATH += /opt/fsl-imx-wayland/4.1.15-2.0.1/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/glib-2.0/include/
-    INCLUDEPATH += /opt/fsl-imx-wayland/4.1.15-2.0.1/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/glib-2.0/
-    INCLUDEPATH += /opt/fsl-imx-wayland/4.1.15-2.0.1/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/gstreamer-1.0/include/
     DEFINES += __ARM_PCS_VFP QT_NO_OPENGL
+    INCLUDEPATH += $$[QT_SYSROOT]/usr/include/c++/5.3.0/
+    INCLUDEPATH += $$[QT_SYSROOT]/usr/include/c++/5.3.0/arm-poky-linux-gnueabi
+}
 
-    LIBS += -L/opt/fsl-imx-wayland/4.1.15-2.0.1/sysroots/cortexa7hf-neon-poky-linux-gnueabi/lib/ -lpthread \
-            -L/opt/fsl-imx-wayland/4.1.15-2.0.1/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/ \
-            -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 -lgstapp-1.0
+INCLUDEPATH += $$[QT_SYSROOT]/usr/include/gstreamer-1.0/
+INCLUDEPATH += $$[QT_SYSROOT]/usr/lib/glib-2.0/include/
+INCLUDEPATH += $$[QT_SYSROOT]/usr/include/glib-2.0/
+INCLUDEPATH += $$[QT_SYSROOT]/usr/include/
+INCLUDEPATH += $$[QT_SYSROOT]/usr/lib/gstreamer-1.0/include/
+LIBS += -L$$[QT_SYSROOT]/lib/ -lpthread -L$$[QT_SYSROOT]/usr/lib/ \
+        -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 -lgstapp-1.0
 
-    target.path = /home/root/
+!DESKTOP {
+    target.path = /usr/bin/
     INSTALLS += target
 }
 
