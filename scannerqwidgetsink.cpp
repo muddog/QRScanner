@@ -146,5 +146,6 @@ void ScannerQWidgetSink::Rendering()
             sem.release(1);
         }
     }
-    gst_buffer_unref(gstImageBuffer);
+    //gst_buffer_unref(gstImageBuffer);
+    gst_sample_unref(sample);
 }
